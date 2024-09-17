@@ -5,12 +5,44 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.practica_2.HelloController">
-  <padding>
-    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-  </padding>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ComboBox?>
+<VBox alignment="TOP_CENTER" spacing="100.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.practica_2.HelloController" style="-fx-background-color: #000">
 
-  <Label fx:id="welcomeText"/>
-  <Button text="Hello!" onAction="#onHelloButtonClick"/>
+  <padding>
+    <Insets top="15" bottom="5" right="5" left="5"/>
+  </padding>
+  <Label text="Concierto Luis Miguel 2025" alignment="TOP_CENTER" style="-fx-font-family: Broadway; -fx-font-size: 20; -fx-text-fill: #FFC"/>
+
+  <HBox fx:id="content" alignment="CENTER" spacing="80.0">
+    <HBox fx:id="repr_datos" alignment="CENTER">
+      <Label text="Representacion datos" style="-fx-text-fill: #FFF"/>
+    </HBox>
+
+    <VBox fx:id="cap_datos" alignment="CENTER" spacing="15.0">
+
+      <VBox fx:id="principal_datos">
+        <HBox>
+          <Label text="# Asiento:  " style="-fx-text-fill: #FFF; -fx-font-size: 15;"/>
+          <ComboBox fx:id="CB_asientos" style="-fx-background-color: #FFF"/>
+        </HBox>
+        <Label fx:id="labelCosto" text="Costo: $" style="-fx-text-fill: #FFF; -fx-font-size: 15"/>
+      </VBox>
+
+
+      <HBox fx:id="botones_confirm" spacing="8.0">
+        <Button text="Confirmar" onAction="#onConfirmButtonCLick" style="-fx-background-color: #FFF; -fx-border-radius: 50; -fx-background-radius: 50"/>
+        <Button text="Seleccionar otro asiento" onAction="#onOtroAsientoButtonCLick" style="-fx-background-color: #FFF; -fx-border-radius: 50; -fx-background-radius: 50"/>
+      </HBox>
+
+      <HBox fx:id="botones_salir" spacing="8.0">
+        <Button text="Comprar otro boleto" onAction="#onOtroBoletoButtonClick" style="-fx-background-color: #FFF; -fx-border-radius: 50; -fx-background-radius: 50"/>
+        <Button text="Salir" onAction="#onSalirButtonClick" style="-fx-background-color: #FFF; -fx-border-radius: 50; -fx-background-radius: 50"/>
+      </HBox>
+
+    </VBox>
+  </HBox>
+
+
 </VBox>
