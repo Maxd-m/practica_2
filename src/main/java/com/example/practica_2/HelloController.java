@@ -17,16 +17,26 @@ public class HelloController implements Initializable {
     private Label welcomeText;
     @FXML
     private HBox botones_salir;
+    private ListaAsientos lista = new ListaAsientos(24);
+    private Nodo lugar; // Nodo para acceder a la info de los lugares
 
     public void onConfirmButtonCLick(ActionEvent actionEvent) {
         //System.out.println("confirmo");
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+
+        lugar = lista.busca(19); //Prueba para acceder a la info del lugar
+        if (lugar.disponible) //Prueba para checar disponibilidad
+            System.out.println("Lugar libre");
+        else
+            System.out.println("Lugar ocupado");
+
         alert.setTitle("Confirmacion");
         alert.setHeaderText(null);
-        alert.setContentText("Desea comprar el boleto X con precio Y?");
+        alert.setContentText("Desea comprar el boleto "+lugar.no_lugar+" con precio de $"+lugar.precio);//Prueba de acceso a la info de un lugar
         alert.showAndWait().ifPresent(response -> {
             if(response.equals(ButtonType.OK)){
-                System.out.println("confirmacion");
+                lista.modifica_dis(lugar.no_lugar);//Prueba de cambio de los datos
+                System.out.println("confirmacion "+lugar.no_lugar+lugar.disponible);
             }else{
                 System.out.println("no confirma");
             }
