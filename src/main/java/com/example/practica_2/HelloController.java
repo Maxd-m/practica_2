@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 
@@ -17,6 +18,8 @@ public class HelloController implements Initializable {
     private Label welcomeText;
     @FXML
     private HBox botones_salir;
+    @FXML
+    private ComboBox CB_asientos;
     private ListaAsientos lista = new ListaAsientos(24);
     private Nodo lugar; // Nodo para acceder a la info de los lugares
 
@@ -58,5 +61,8 @@ public class HelloController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         botones_salir.setVisible(false);
+        for (int i = 1; i <25 ; i++) {
+            CB_asientos.getItems().add(i);
+        }
     }
 }
