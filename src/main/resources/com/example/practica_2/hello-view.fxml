@@ -7,6 +7,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.layout.FlowPane?>
 <VBox alignment="TOP_CENTER" spacing="100.0" xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.example.practica_2.HelloController" style="-fx-background-color: #000">
 
@@ -16,9 +17,10 @@
   <Label text="Concierto Luis Miguel 2025" alignment="TOP_CENTER" style="-fx-font-family: Broadway; -fx-font-size: 20; -fx-text-fill: #FFC"/>
 
   <HBox fx:id="content" alignment="CENTER" spacing="80.0">
-    <HBox fx:id="repr_datos" alignment="CENTER">
-      <Label text="Representacion datos" style="-fx-text-fill: #FFF"/>
-    </HBox>
+    <VBox fx:id="repr_datos" alignment="CENTER" spacing="80">
+      <Label text="Asientos disponibles" style="-fx-text-fill: #FFF; -fx-font-size: 20"/>
+      <FlowPane fx:id="asientos_fp" vgap="6" hgap="4"/>
+    </VBox>
 
     <VBox fx:id="cap_datos" alignment="CENTER" spacing="15.0">
 
@@ -33,11 +35,9 @@
 
       <HBox fx:id="botones_confirm" spacing="8.0">
         <Button text="Confirmar" onAction="#onConfirmButtonCLick" style="-fx-background-color: #FFF; -fx-border-radius: 50; -fx-background-radius: 50"/>
-        <Button text="Seleccionar otro asiento" onAction="#onOtroAsientoButtonCLick" style="-fx-background-color: #FFF; -fx-border-radius: 50; -fx-background-radius: 50"/>
       </HBox>
 
       <HBox fx:id="botones_salir" spacing="8.0">
-        <Button text="Comprar otro boleto" onAction="#onOtroBoletoButtonClick" style="-fx-background-color: #FFF; -fx-border-radius: 50; -fx-background-radius: 50"/>
         <Button text="Salir" onAction="#onSalirButtonClick" style="-fx-background-color: #FFF; -fx-border-radius: 50; -fx-background-radius: 50"/>
       </HBox>
 
