@@ -29,41 +29,49 @@ public class HelloController implements Initializable {
     private Nodo lugar; // Nodo para acceder a la info de los lugares
 
     public void onConfirmButtonCLick(ActionEvent actionEvent) {
-        //System.out.println("confirmo");
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 
-        lugar = lista.busca(CB_asientos.getSelectionModel().getSelectedIndex()+1); //Prueba para acceder a la info del lugar
-        if (lugar.disponible) //Prueba para checar disponibilidad
-            System.out.println("Lugar libre");
-        else
-            System.out.println("Lugar ocupado");
+        lugar = lista.busca(CB_asientos.getSelectionModel().getSelectedIndex() + 1); // Acceder a la info del lugar
 
-        alert.setTitle("Confirmacion");
+        // Verificar disponibilidad del asiento
+        if (!lugar.disponible) {
+            Alert alertOccupied = new Alert(Alert.AlertType.WARNING);
+            alertOccupied.setTitle("Asiento no disponible");
+            alertOccupied.setHeaderText(null);
+            alertOccupied.setContentText("El asiento " + lugar.no_lugar + " ya está ocupado.");
+            alertOccupied.showAndWait();
+            return; // Salir del método si el asiento está ocupado
+        }
+
+        alert.setTitle("Confirmación");
         alert.setHeaderText(null);
-        alert.setContentText("Desea comprar el boleto "+lugar.no_lugar+" con precio de $"+lugar.precio);//Prueba de acceso a la info de un lugar
+        alert.setContentText("Desea comprar el boleto " + lugar.no_lugar + " con precio de $" + lugar.precio);
         alert.showAndWait().ifPresent(response -> {
-            if(response.equals(ButtonType.OK)){
-                lista.modifica_dis(lugar.no_lugar);//Prueba de cambio de los datos
-                System.out.println("confirmacion "+lugar.no_lugar+lugar.disponible);
-                //Aqui se cambia el color del rectangulo
-                //
+            if (response.equals(ButtonType.OK)) {
+                lista.modifica_dis(lugar.no_lugar); // Cambiar disponibilidad
+                System.out.println("Confirmación " + lugar.no_lugar + " " + lugar.disponible);
+
+                // Cambiar color del rectángulo correspondiente
+                Rectangle asiento = (Rectangle) asientos_fp.getChildren().get(lugar.no_lugar - 1);
+                asiento.setFill(Color.RED);
 
                 Alert alert2 = new Alert(Alert.AlertType.CONFIRMATION);
-                alert2.setTitle("Confirmacion");
+                alert2.setTitle("Confirmación");
                 alert2.setHeaderText(null);
-                alert2.setContentText("Desea comprar otro boleto?");//Prueba de acceso a la info de un lugar
+                alert2.setContentText("¿Desea comprar otro boleto?");
                 alert2.showAndWait().ifPresent(response2 -> {
-                    if(response2.equals(ButtonType.OK)){
+                    if (response2.equals(ButtonType.OK)) {
                         CB_asientos.getSelectionModel().clearSelection();
-                    }else{
+                    } else {
                         System.exit(0);
                     }
                 });
-            }else{
-                System.out.println("no confirma");
+            } else {
+                System.out.println("No confirma");
             }
         });
     }
+
 
     public void onOtroAsientoButtonCLick(ActionEvent actionEvent) {
     }

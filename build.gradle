@@ -55,3 +55,10 @@ jlink {
 jlinkZip {
   group = 'distribution'
 }
+
+run {
+  jvmArgs = [
+          '--module-path', classpath.asPath, // O tu path a las librerías de JavaFX
+          '--add-modules', 'javafx.controls,javafx.fxml'
+  ]
+}
