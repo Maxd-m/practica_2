@@ -24,7 +24,7 @@ public class HelloController implements Initializable {
     @FXML
     private FlowPane asientos_fp;
     @FXML
-    private Label welcomeText;
+    private Label labelCosto;
     @FXML
     private HBox botones_salir;
     @FXML
@@ -111,6 +111,15 @@ public class HelloController implements Initializable {
 
             // Añadir el StackPane al FlowPane
             asientos_fp.getChildren().add(asientoPane);
+
+            CB_asientos.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+                if (newValue != null) {
+                    int asientoNumero = (Integer) newValue;
+                    Nodo asiento = lista.busca(asientoNumero);
+                    labelCosto.setText("Costo: $" + asiento.precio);
+
+                }
+            });
         }
     }
 }
